@@ -1,32 +1,25 @@
 import React, { useState, useContext } from 'react';
 import { FirebaseProvider } from '../Firebase';
-import { BrowserRouter, Route, ROUTES } from '../Router';
+import { AuthProvider } from '../Firebase/Auth';
+import { RouterProvider, ROUTES } from '../Router';
 import Layout from '../Layout';
 import BookList from '../BookList';
 import { FirebaseContext } from '../Firebase';
+import { withRouter } from '../Router';
 
 export default function App() {
   return (
     <FirebaseProvider>
-      <BrowserRouter>
-        <>
-          <Route
-            path={ROUTES.HOME}
-            component={HomePage}
-            exact
-          />
-          <Route
-            path={ROUTES.SIGN_UP}
-            component={SignUpPage}
-            exact
-          />
-          <Route
-            path={ROUTES.SIGN_IN}
-            component={SignInPage}
-            exact
-          />
-        </>
-      </BrowserRouter>
+      <AuthProvider>
+        <RouterProvider
+          routes={[
+            { path: ROUTES.HOME, component: HomePage, exact: true },
+            { path: ROUTES.SIGN_IN, component: SignInPage, exact: true },
+            { path: ROUTES.SIGN_UP, component: SignUpPage, exact: true },
+            { path: ROUTES.LOGOUT, component: LogoutPage, exact: true },
+          ]}
+        />
+      </AuthProvider>
     </FirebaseProvider>
   );
 }
@@ -113,7 +106,7 @@ function SignInPage() {
 
   return (
     <Layout>
-      <h2>Crea tu cuenta</h2>
+      <h2>Entra a tu cuenta</h2>
 
       <input
         type="email"
@@ -130,8 +123,17 @@ function SignInPage() {
       />
 
       <button onClick={signInWithEmailAndPassword}>
-        Crear cuenta
+        Entrar
       </button>
     </Layout>
   );
 }
+
+function LogoutPage({ history }) {
+  const firebase = useContext(FirebaseContext);
+  firebase.signOut().then(() => history.push(ROUTES.HOME));
+
+  return null;
+}
+
+LogoutPage = withRouter(LogoutPage);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigation } from '../Router';
+import Navigation from '../Router/Navigation';
 import './Layout.css';
 
 export default function Layout({ children }) {

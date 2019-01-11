@@ -3,30 +3,31 @@ import {
   BrowserRouter,
   Route,
   Link,
+  withRouter,
 } from 'react-router-dom';
 
-export function Navigation() {
+export function RouterProvider({ routes }) {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to={ROUTES.HOME}>Home</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.SIGN_IN}>Entrar</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.SIGN_UP}>Crea tu cuenta</Link>
-        </li>
-      </ul>
-    </nav>
+    <BrowserRouter>
+      <>
+        {routes.map(route => (
+          <Route
+            key={route.path}
+            path={route.path}
+            component={route.component}
+            exact={route.exact}
+          />
+        ))}
+      </>
+    </BrowserRouter>
   );
 }
-
-export { BrowserRouter, Route, Link };
 
 export const ROUTES = {
   'HOME': '/',
   'SIGN_IN': '/signin',
   'SIGN_UP': '/signup',
+  'LOGOUT': '/logout',
 };
+
+export { Link, withRouter };
