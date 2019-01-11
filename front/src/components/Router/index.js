@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   BrowserRouter,
   Route,
@@ -9,7 +9,7 @@ import {
 export function RouterProvider({ routes }) {
   return (
     <BrowserRouter>
-      <>
+      <InjectRouterContext>
         {routes.map(route => (
           <Route
             key={route.path}
@@ -18,10 +18,12 @@ export function RouterProvider({ routes }) {
             exact={route.exact}
           />
         ))}
-      </>
+      </InjectRouterContext>
     </BrowserRouter>
   );
 }
+
+export const useRouter = () => useContext(RouterContext);
 
 export const ROUTES = {
   'HOME': '/',
@@ -31,3 +33,21 @@ export const ROUTES = {
 };
 
 export { Link, withRouter };
+
+const RouterContext = React.createContext();
+
+function InjectRouterContext({ children, ...router }) {
+  return (
+    <RouterContext.Provider
+      value={{
+        location: router.location,
+        history: router.history,
+        match: router.match,
+      }}
+    >
+      {children}
+    </RouterContext.Provider>
+  );
+}
+
+InjectRouterContext = withRouter(InjectRouterContext);

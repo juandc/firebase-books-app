@@ -1,20 +1,16 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../Firebase/Auth';
+import React from 'react';
+import { useAuth } from '../Firebase/Auth';
 import { Link, ROUTES } from './';
 
 export default function Navigation() {
-  const { isLoading, user } = useContext(AuthContext);
-  
-  const commonRoutes = (
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-  );
+  const { isLoading, user } = useAuth();
 
   return (
     <nav>
       <ul>
-        {commonRoutes}
+        <li>
+          <Link to={ROUTES.HOME}>Home</Link>
+        </li>
 
         {isLoading && <p>Loading...</p>}
 

@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Firebase from '../../funcs/firebase';
 
 const firebase = new Firebase();
-
-export const FirebaseContext = React.createContext(null);
 
 export function FirebaseProvider({ children }) {
   return (
@@ -13,4 +11,6 @@ export function FirebaseProvider({ children }) {
   );
 };
 
+export const FirebaseContext = React.createContext(null);
 export const FirebaseConsumer = FirebaseContext.Consumer;
+export const useFirebase = () => useContext(FirebaseContext);

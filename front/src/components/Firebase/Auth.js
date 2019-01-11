@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { FirebaseContext } from './';
+import { useFirebase } from './';
 
 export const AuthContext = React.createContext();
 
 export function AuthProvider({ children }) {
-  const firebase = useContext(FirebaseContext);
-  const { user, isLoading } = useAuth(firebase.setAuthListener);
-  
+  const { user, isLoading } = useAuth();
+
   return (
     <AuthContext.Provider value={{ isLoading, user }}>
       {children}
@@ -14,24 +13,19 @@ export function AuthProvider({ children }) {
   );
 }
 
-export const AuthConsumer = AuthContext.Consumer;
-
-const useAuth = (authListener) => {
+export const useAuth = () => {
+  const firebase = useFirebase();
   const [authState, setState] = useState({
     isLoading: true,
     user: null,
   });
 
-  useEffect(() => {
-    const unsubscribe = authListener(authState => {
-      return setState({
-        isLoading: false,
-        user: authState,
-      });
-    });
-
-    return unsubscribe;
-  }, []);
+  useEffect(() => firebase.setAuthListener(
+    user => setState({ isLoading: false, user })),
+    []
+  );
 
   return authState;
 }
+
+export const AuthConsumer = AuthContext.Consumer;
