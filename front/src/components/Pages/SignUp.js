@@ -1,19 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Layout from '../Layout';
-import { FirebaseContext } from '../Firebase';
+import { useFirebase } from '../Firebase';
+import { useRouter, ROUTES } from '../Router';
 
 export default function SignUpPage() {
-  const firebase = useContext(FirebaseContext);
+  const firebase = useFirebase();
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const createUserWithEmailAndPassword = () => {
     firebase.createUserWithEmailAndPassword({ email, password })
-      .then(authUser => {
-        console.log(authUser)
+      .then(() => {
+        router.history.push(ROUTES.HOME);
       })
-      .catch(err => console.log(err))
+      .catch(console.log);
   }
 
   return (

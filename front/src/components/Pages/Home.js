@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import Layout from '../Layout';
 import BookList from '../BookList';
-import { FirebaseContext } from '../Firebase';
+import { useFirebase } from '../Firebase';
 
 export default function HomePage() {
-  const firebase = useContext(FirebaseContext);
+  const firebase = useFirebase();
   console.log(firebase);
 
   return (

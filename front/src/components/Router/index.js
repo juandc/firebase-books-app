@@ -6,6 +6,8 @@ import {
   withRouter,
 } from 'react-router-dom';
 
+const RouterContext = React.createContext();
+
 export function RouterProvider({ routes }) {
   return (
     <BrowserRouter>
@@ -23,6 +25,7 @@ export function RouterProvider({ routes }) {
   );
 }
 
+export const RouterConsumer = RouterContext.Consumer;
 export const useRouter = () => useContext(RouterContext);
 
 export const ROUTES = {
@@ -33,8 +36,6 @@ export const ROUTES = {
 };
 
 export { Link, withRouter };
-
-const RouterContext = React.createContext();
 
 function InjectRouterContext({ children, ...router }) {
   return (
@@ -50,4 +51,5 @@ function InjectRouterContext({ children, ...router }) {
   );
 }
 
+// eslint-disable-next-line no-func-assign
 InjectRouterContext = withRouter(InjectRouterContext);

@@ -9,7 +9,7 @@ export default class Firebase {
   }
 
   // Auth
-  setAuthListener = (callback) => {
+  listenAuthChanges = (callback) => {
     return this.auth.onAuthStateChanged(callback);
   }
   
@@ -27,5 +27,5 @@ export default class Firebase {
 }
 
 const firebaseConfig = {
-  
+
 };
