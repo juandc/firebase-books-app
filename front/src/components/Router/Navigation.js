@@ -24,14 +24,17 @@ export default function Navigation() {
 }
 
 const UserInfo = ({ displayName, email }) => (
-  <li>
+  <>
+    <li>
+      <Link to={ROUTES.NEW_BOOK}>Añadir libros</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.LOGOUT}>Salir</Link>
+    </li>
+
     <span>Welcome, {displayName}</span>
     <span>{email}</span>
-
-    <br/>
-
-    <Link to={ROUTES.LOGOUT}>Salir</Link>
-  </li>
+  </>
 );
 
 const NoUserInfo = () => (

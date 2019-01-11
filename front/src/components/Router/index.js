@@ -33,6 +33,7 @@ export const ROUTES = {
   'SIGN_IN': '/signin',
   'SIGN_UP': '/signup',
   'LOGOUT': '/logout',
+  'NEW_BOOK': '/new',
 };
 
 export { Link, withRouter };

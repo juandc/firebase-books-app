@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../Layout';
 import BookList from '../BookList';
 import { useFirebase } from '../Firebase';
 
 export default function HomePage() {
+  const [books, setBooks] = useState();
   const firebase = useFirebase();
-  console.log(firebase);
+
+  const getBooks = () => {
+    firebase.getBooks()
+      .then(setBooks)
+      .catch(console.log);
+  }
+
+  useEffect(getBooks, [])
 
   return (
     <Layout>
@@ -13,13 +21,7 @@ export default function HomePage() {
       <p>Encuentra libros de diferentes autores.</p>
 
       <BookList
-        list={[
-          { title: 'Título 1', author: 'author 1', id: '1' },
-          { title: 'Título 2', author: 'author 2', id: '2' },
-          { title: 'Título 3', author: 'author 3', id: '3' },
-          { title: 'Título 4', author: 'author 4', id: '4' },
-          { title: 'Título 5', author: 'author 5', id: '5' },
-        ]}
+        list={books}
       />
     </Layout>
   );

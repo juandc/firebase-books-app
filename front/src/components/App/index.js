@@ -6,6 +6,7 @@ import HomePage from '../Pages/Home';
 import SignInPage from '../Pages/SignIn';
 import SignUpPage from '../Pages/SignUp';
 import LogoutPage from '../Pages/Logout';
+import NewBookPage from '../Pages/NewBook';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             { path: ROUTES.SIGN_IN, component: SignInPage, exact: true },
             { path: ROUTES.SIGN_UP, component: SignUpPage, exact: true },
             { path: ROUTES.LOGOUT, component: LogoutPage, exact: true },
+            { path: ROUTES.NEW_BOOK, component: NewBookPage, exact: true },
           ]}
         />
       </AuthProvider>
