@@ -45,11 +45,7 @@ export default class Firebase {
     
     return new Promise((resolve, reject) => {
       booksRef.get()
-        .then(docs => {
-          const formattedDocs = getFormattedDocs(docs);
-
-          return resolve(formattedDocs);
-        })
+        .then(docs => resolve(getFormattedDocs(docs)))
         .catch(reject);
     });
   }

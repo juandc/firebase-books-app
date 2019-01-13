@@ -1,0 +1,11 @@
+.Book {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: #333;
+  margin: 0 5px 10px 0;
+  padding: 15px;
+}
+
+.Book-title {
+  margin: 0 0 10px;
+}

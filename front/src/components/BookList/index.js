@@ -8,6 +8,7 @@ export default function BookList({ list }) {
   return (
     <div className="BookList">
       {list.map(Book)}
+      {list.map(Book)}
     </div>
   );
 }

@@ -1,0 +1,23 @@
+nav {
+  height: 60px;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0 10px 0 0;
+}
+
+a {
+  color: rgb(39, 107, 195);
+}

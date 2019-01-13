@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../Firebase/Auth';
 import { Link, ROUTES } from './';
+import './Navigation.css';
 
 export default function Navigation() {
   const { isLoading, user } = useAuth();
