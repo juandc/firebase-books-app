@@ -180,4 +180,4 @@ Te invito a tomar el [Curso de Firebase Cloud Functions](https://platzi.com/curs
 
 **¡#NuncaParesDeAprender!** :green_heart::nerd_face:
 
-@[youtube](https://www.youtube.com/watch?v=Li1nCsnMaz4)
+> [La evolución de las APIs y su modelo de negocio | PlatziConf 2018](https://www.youtube.com/watch?v=Li1nCsnMaz4)
